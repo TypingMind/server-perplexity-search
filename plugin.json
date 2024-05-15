@@ -1,0 +1,66 @@
+{
+  "uuid": "50da3859-83cf-4857-a8a2-60ab2ea947f5",
+  "id": "server_search_via_perplexity",
+  "iconURL": "/assets/models/perplexityai.png",
+  "system": true,
+  "emoji": "🔍",
+  "title": "Perplexity Search",
+  "isServerPlugin": true,
+  "disabled": true,
+  "userSettings": [
+    {
+      "name": "apiKey",
+      "label": "Perplexity API Key",
+      "type": "password",
+      "required": true,
+      "description": "Get your API Key from Perplexity: https://www.perplexity.ai/settings/api"
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "required": true,
+      "description": "All supported models here: https://docs.perplexity.ai/docs/model-cards",
+      "placeholder": "llama-3-sonar-small-32k-online",
+      "type": "string"
+    },
+    {
+      "name": "systemMessage",
+      "label": "System Message",
+      "required": true,
+      "description": "Instruction for the search AI",
+      "placeholder": "Be precise and concise",
+      "type": "string"
+    }
+  ],
+  "openaiSpec": {
+    "name": "server_search_via_perplexity",
+    "description": "Search for information from the internet using Perplexity.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "keyword": {
+          "type": "string",
+          "description": "The search keyword"
+        }
+      },
+      "required": ["keyword"]
+    }
+  },
+  "httpAction": {
+    "id": "b156833f-9599-4155-bba9-e713dd21aa01",
+    "method": "POST",
+    "name": "",
+    "url": "https://api.perplexity.ai/chat/completions",
+    "requestBody": "{\"model\": \"{model}\",\"messages\": [{\"role\": \"system\",\"content\": \"{systemMessage}\"},{\"role\": \"user\",\"content\": \"{keyword}\"}]}",
+    "requestHeaders": "{\"accept\": \"application/json\",\"authorization\": \"Bearer {apiKey}\"}",
+    "resultTransform": {
+      "engine": "jmes",
+      "expression": "choices[*].message.content | join(' ', @)"
+    },
+    "hasResultTransform": true,
+    "hasBody": true,
+    "hasHeaders": true
+  },
+  "implementationType": "http",
+  "outputType": "respond_to_ai"
+}
