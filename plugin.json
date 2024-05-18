@@ -18,16 +18,16 @@
     {
       "name": "model",
       "label": "Model",
-      "required": true,
       "description": "All supported models here: https://docs.perplexity.ai/docs/model-cards",
-      "placeholder": "llama-3-sonar-small-32k-online"
+      "placeholder": "llama-3-sonar-small-32k-online",
+      "defaultValue": "llama-3-sonar-small-32k-online"
     },
     {
       "name": "systemMessage",
       "label": "System Message",
-      "required": true,
       "description": "Instruction for the search AI",
-      "placeholder": "Be precise and concise"
+      "placeholder": "Be precise and concise",
+      "defaultValue": "Be precise and concise"
     }
   ],
   "openaiSpec": {
