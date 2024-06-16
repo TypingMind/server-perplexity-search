@@ -1,3 +1,5 @@
+**Deprecated. Please use https://github.com/TypingMind/plugin-perplexity-search instead**
+
 This plugin allows the AI assistant to search for information from the internet using Perplexity.
 
 Example usage:
